@@ -9,8 +9,8 @@
  * solo cambia la implementacion interna.
  */
 
-import type { ProductionEntry, OperarioInfo, Quincena } from "@/types/production"
-import { quincenaKey } from "@/types/production"
+import type { ProductionEntry, OperarioInfo, Quincena } from "@/src/types/production"
+import { quincenaKey } from "@/src/types/production"
 
 const ENTRIES_PREFIX = "produccion_entries_"
 const OPERARIO_KEY = "produccion_operario"
