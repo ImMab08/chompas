@@ -111,6 +111,9 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 }
+* {
+  box-sizing: border-box;
+}
 
 /* Print styles for the report page */
 @media print {

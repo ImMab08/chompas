@@ -1,1 +1,5 @@
+export * from './icon_add'
+export * from './icon_coat'
 export * from './icon_print'
+export * from './icon_stick_note_2'
+export * from './icon_account_circle'

@@ -139,26 +139,26 @@ export function ReportePage() {
               <th colSpan={3} className="border border-black px-2 py-1 text-left text-xs font-bold uppercase">OPERARIO</th>
               <th colSpan={1} className="border border-black px-2 py-1 text-left text-xs font-bold uppercase">CÉDULA</th>
               <th colSpan={6} rowSpan={2} className="border border-black py-1 text-center text-xs font-bold uppercase">TALLA</th>
-              <th rowSpan={4} className="border border-black bg-[#E2E8F0] px-1 py-1 text-center text-[10px] font-bold uppercase leading-tight w-[55px]">TOTAL<br />COLOR</th>
-              <th rowSpan={4} className="border border-black px-1 py-1 text-center text-[10px] font-bold uppercase w-[75px]">PRECIO</th>
-              <th rowSpan={4} className="border border-black bg-[#E2E8F0] px-1 py-1 text-center text-[10px] font-bold uppercase w-[85px]">ACUMULADO</th>
-              <th rowSpan={4} className="border border-black px-1 py-1 text-center text-[10px] font-bold uppercase min-w-[90px]">OBSERVACIÓN</th>
+              <th rowSpan={4} className="border border-black bg-[#E2E8F0] px-1 py-1 text-center text-[10px] font-bold uppercase leading-tight w-13.75">TOTAL<br />COLOR</th>
+              <th rowSpan={4} className="border border-black px-1 py-1 text-center text-[10px] font-bold uppercase w-18.75">PRECIO</th>
+              <th rowSpan={4} className="border border-black bg-[#E2E8F0] px-1 py-1 text-center text-[10px] font-bold uppercase w-21.25">ACUMULADO</th>
+              <th rowSpan={4} className="border border-black px-1 py-1 text-center text-[10px] font-bold uppercase min-w-22.5">OBSERVACIÓN</th>
             </tr>
             <tr>
               <th colSpan={3} className="border border-black px-2 py-1 text-left text-xs font-medium">{operario!.nombre}</th>
               <th colSpan={1} className="border border-black px-2 py-1 text-left text-xs font-medium">{operario!.cedula}</th>
             </tr>
             <tr>
-              <th rowSpan={2} className="border border-black px-1 py-1 text-center text-[10px] font-bold w-[75px]">FECHA</th>
-              <th rowSpan={2} className="border border-black px-1 py-1 text-center text-[10px] font-bold w-[45px]">OP</th>
-              <th rowSpan={2} className="border border-black px-1 py-1 text-center text-[10px] font-bold w-[45px]">REF</th>
-              <th rowSpan={2} className="border border-black px-1 py-1 text-center text-[10px] font-bold min-w-[100px]">OPERACIÓN</th>
-              <th rowSpan={2} className="border border-black px-1 py-1 text-center text-[10px] font-bold w-[65px]">COLOR</th>
-              <th className="border border-black px-1 py-0.5 text-center text-[10px] font-bold w-[35px]">2-4</th>
-              <th className="border border-black px-1 py-0.5 text-center text-[10px] font-bold w-[35px]">6-8</th>
-              <th className="border border-black px-1 py-0.5 text-center text-[10px] font-bold w-[35px]">10-12</th>
-              <th className="border border-black px-1 py-0.5 text-center text-[10px] font-bold w-[35px]">14-16</th>
-              <th className="border border-black px-1 py-0.5 text-center text-[10px] font-bold w-[35px]">18</th>
+              <th rowSpan={2} className="border border-black px-1 py-1 text-center text-[10px] font-bold w-18.75">FECHA</th>
+              <th rowSpan={2} className="border border-black px-1 py-1 text-center text-[10px] font-bold w-11.25">OP</th>
+              <th rowSpan={2} className="border border-black px-1 py-1 text-center text-[10px] font-bold w-11.25">REF</th>
+              <th rowSpan={2} className="border border-black px-1 py-1 text-center text-[10px] font-bold min-w-25">OPERACIÓN</th>
+              <th rowSpan={2} className="border border-black px-1 py-1 text-center text-[10px] font-bold w-16.25">COLOR</th>
+              <th className="border border-black px-1 py-0.5 text-center text-[10px] font-bold w-8.75">2-4</th>
+              <th className="border border-black px-1 py-0.5 text-center text-[10px] font-bold w-8.75">6-8</th>
+              <th className="border border-black px-1 py-0.5 text-center text-[10px] font-bold w-8.75">10-12</th>
+              <th className="border border-black px-1 py-0.5 text-center text-[10px] font-bold w-8.75">14-16</th>
+              <th className="border border-black px-1 py-0.5 text-center text-[10px] font-bold w-8.75">18</th>
             </tr>
             <tr>
               <th className="border border-black px-1 py-0.5 text-center text-[10px] font-bold">S</th>
@@ -175,7 +175,7 @@ export function ReportePage() {
               const totalColor = calcularTotalColor(entry);
               const acum = calcularAcumulado(entries, i);
               return (
-                <tr key={entry.id} className="h-[28px]">
+                <tr key={entry.id} className="h-7">
                   <td className="border border-black px-1.5 py-1 text-center">{formatFecha(entry.fecha)}</td>
                   <td className="border border-black px-1.5 py-1 text-center">{entry.op}</td>
                   <td className="border border-black px-1.5 py-1 text-center">{entry.ref}</td>
@@ -196,7 +196,7 @@ export function ReportePage() {
 
             {/* 2. RENDERIZAR FILAS VACÍAS (RELLENO) */}
             {filasVacias.map((_, index) => (
-              <tr key={`empty-${index}`} className="h-[28px]">
+              <tr key={`empty-${index}`} className="h-7">
                 <td className="border border-black px-1.5 py-1"></td>
                 <td className="border border-black px-1.5 py-1"></td>
                 <td className="border border-black px-1.5 py-1"></td>
@@ -215,8 +215,8 @@ export function ReportePage() {
             ))}
 
             {/* Fila de totales finales */}
-            <tr className="bg-[#f8fafc] font-bold h-[30px]">
-              <td colSpan={10} className="border border-black px-2 py-1 text-right uppercase">
+            <tr className="bg-[#f8fafc] font-bold h-7.5">
+              <td colSpan={10} className="border border-black px-2 py-1 text-left uppercase">
                 TOTALES:
               </td>
               <td className="border border-black px-1.5 py-1 text-center text-[11px]">

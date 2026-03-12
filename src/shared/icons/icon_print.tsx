@@ -1,6 +1,6 @@
 import { IconProps } from "@/src/types/props/icon_props";
 
-export function IconPrint({ width, height, ...props }: IconProps) {
+export function IconPrint({ width = 24, height = 24, ...props }: IconProps) {
   return (
     <svg
       {...props}

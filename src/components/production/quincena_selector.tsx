@@ -55,7 +55,7 @@ export default function QuincenaSelector({ quincena, onChange }: QuincenaSelecto
       {/* Boton anterior - minimo 48px para touch */}
       <button
         onClick={irAnterior}
-        className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-secondary text-foreground active:bg-muted transition-colors"
+        className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-secondary text-foreground active:bg-muted transition-colors cursor-pointer"
         aria-label="Quincena anterior"
       >
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -71,7 +71,7 @@ export default function QuincenaSelector({ quincena, onChange }: QuincenaSelecto
       {/* Boton siguiente */}
       <button
         onClick={irSiguiente}
-        className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-secondary text-foreground active:bg-muted transition-colors"
+        className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-secondary text-foreground active:bg-muted transition-colors cursor-pointer"
         aria-label="Quincena siguiente"
       >
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
