@@ -127,15 +127,15 @@ export function HomePage() {
   }
 
   return (
-    <div className="flex flex-col h-full bg-background md:overflow-hidden">
+    <div className="flex flex-col min-h-screen h-full bg-background md:overflow-hidden">
       {/* === HEADER === */}
       <Header handleNuevo={handleNuevo} handleVerReporte={handleVerReporte} />
 
       {/* === MOBILE LAYOUT === */}
-      <div className="lg:hidden pb-28">
+      <div className="lg:hidden h-full">
         <div className="mx-auto max-w-lg px-4 py-4 flex flex-col gap-4">
           <QuincenaSelector quincena={quincena} onChange={setQuincena} />
-          <OperarioConfig operario={operario} onSave={handleSaveOperario} />
+          {/* <OperarioConfig operario={operario} onSave={handleSaveOperario} /> */}
           {entries.length > 0 && <QuincenaSummary entries={entries} />}
 
           {entries.length === 0 ? (
