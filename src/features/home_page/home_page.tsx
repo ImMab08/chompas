@@ -30,7 +30,7 @@ import EntryForm from "@/src/components/production/entry_form";
 import DesktopTable from "@/src/components/production/desktop_table";
 import StatsPanel from "@/src/components/production/stats_panel";
 import { Header } from "@/src/shared/header";
-import { IconAdd } from "@/src/shared/icons";
+import { IconAdd, IconPrint } from "@/src/shared/icons";
 
 export function HomePage() {
   const [quincena, setQuincena] = useState<Quincena>(quincenaActual());
@@ -123,7 +123,7 @@ export function HomePage() {
   return (
     <div className="flex flex-col h-full bg-background overflow-hidden">
       {/* === HEADER === */}
-      <Header handleNuevo={handleNuevo} />
+      <Header handleNuevo={handleNuevo} handleVerReporte={handleVerReporte} />
 
       {/* === MOBILE LAYOUT === */}
       <div className="lg:hidden pb-28">
@@ -137,19 +137,7 @@ export function HomePage() {
               onClick={handleVerReporte}
               className="flex items-center justify-center gap-2 rounded-xl border border-primary/30 bg-primary/5 px-4 py-3 text-base font-medium text-primary active:bg-primary/10 transition-colors"
             >
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                <polyline points="14 2 14 8 20 8" />
-              </svg>
+              <IconPrint />
               Ver Reporte / Imprimir PDF
             </button>
           )}
@@ -201,19 +189,7 @@ export function HomePage() {
               onClick={handleNuevo}
               className="flex w-full items-center justify-center gap-2 rounded-xl bg-primary py-4 text-lg font-bold text-primary-foreground active:opacity-90 transition-opacity"
             >
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <line x1="12" y1="5" x2="12" y2="19" />
-                <line x1="5" y1="12" x2="19" y2="12" />
-              </svg>
+              <IconAdd />
               Agregar Registro
             </button>
           </div>
@@ -292,24 +268,20 @@ export function HomePage() {
       {deleteId && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-foreground/40 px-6">
           <div className="w-full max-w-sm rounded-2xl bg-card p-6 shadow-xl">
-            <h3 className="text-lg font-bold text-foreground">
-              Eliminar registro
-            </h3>
+            <h3 className="text-lg font-bold text-foreground">Eliminar registro</h3>
             <p className="mt-2 text-sm text-muted-foreground">
-              {
-                "Esta segura de que desea eliminar este registro? Esta accion no se puede deshacer."
-              }
+              Esta segur@ de que desea eliminar este registro? Esta accion no se puede deshacer.
             </p>
             <div className="mt-5 flex gap-3">
               <button
                 onClick={() => setDeleteId(null)}
-                className="flex-1 rounded-xl border border-border bg-card px-4 py-3 text-base font-medium text-foreground hover:bg-muted transition-colors"
+                className="cursor-pointer text-black flex-1 rounded-xl border border-border bg-card px-4 py-3 text-base font-medium hover:bg-muted transition-colors"
               >
                 Cancelar
               </button>
               <button
                 onClick={handleConfirmDelete}
-                className="flex-1 rounded-xl bg-destructive px-4 py-3 text-base font-medium text-destructive-foreground hover:opacity-90 transition-opacity"
+                className="cursor-pointer text-white flex-1 rounded-xl bg-destructive px-4 py-3 text-base font-medium hover:opacity-90 transition-opacity"
               >
                 Eliminar
               </button>
