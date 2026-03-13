@@ -29,8 +29,9 @@ import EntryCard from "@/src/components/production/entry_card";
 import EntryForm from "@/src/components/production/entry_form";
 import DesktopTable from "@/src/components/production/desktop_table";
 import StatsPanel from "@/src/components/production/stats_panel";
+
 import { Header } from "@/src/shared/header";
-import { IconAdd, IconPrint } from "@/src/shared/icons";
+import { IconAdd, IconArrowDropUp, IconPrint } from "@/src/shared/icons";
 
 export function HomePage() {
   const [quincena, setQuincena] = useState<Quincena>(quincenaActual());
@@ -43,6 +44,7 @@ export function HomePage() {
     ProductionEntry | null | undefined
   >(undefined);
   const [showForm, setShowForm] = useState(false);
+  const [openBubble, setOpenBubble] = useState(false);
   const [deleteId, setDeleteId] = useState<string | null>(null);
   const [loaded, setLoaded] = useState(false);
 
@@ -73,6 +75,10 @@ export function HomePage() {
   function handleNuevo() {
     setFormEntry(null);
     setShowForm(true);
+  }
+
+  function handleOpenBubble() {
+    setOpenBubble(!openBubble);
   }
 
   function handleEditar(entry: ProductionEntry) {
@@ -121,7 +127,7 @@ export function HomePage() {
   }
 
   return (
-    <div className="flex flex-col h-full bg-background overflow-hidden">
+    <div className="flex flex-col h-full bg-background md:overflow-hidden">
       {/* === HEADER === */}
       <Header handleNuevo={handleNuevo} handleVerReporte={handleVerReporte} />
 
@@ -132,39 +138,26 @@ export function HomePage() {
           <OperarioConfig operario={operario} onSave={handleSaveOperario} />
           {entries.length > 0 && <QuincenaSummary entries={entries} />}
 
-          {entries.length > 0 && (
-            <button
-              onClick={handleVerReporte}
-              className="flex items-center justify-center gap-2 rounded-xl border border-primary/30 bg-primary/5 px-4 py-3 text-base font-medium text-primary active:bg-primary/10 transition-colors"
-            >
-              <IconPrint />
-              Ver Reporte / Imprimir PDF
-            </button>
-          )}
-
           {entries.length === 0 ? (
-            <div className="rounded-xl border-2 border-dashed border-border bg-card px-6 py-12 text-center">
-              <svg
-                className="mx-auto mb-3 text-muted-foreground"
-                width="48"
-                height="48"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-                <line x1="12" y1="8" x2="12" y2="16" />
-                <line x1="8" y1="12" x2="16" y2="12" />
-              </svg>
-              <p className="text-base font-medium text-foreground">
-                No hay registros
-              </p>
-              <p className="mt-1 text-sm text-muted-foreground">
-                Toca el boton de abajo para agregar tu primer registro
-              </p>
+            <div className="w-full h-full rounded-xl border-2 border-dashed border-border bg-card px-8 py-16 text-center flex flex-col items-center justify-center space-y-5">
+              <div className="flex items-center justify-center w-32 h-32 bg-secondary rounded-xl">
+                <IconAdd width={50} height={50} />
+              </div>
+              <div>
+                <p className="text-lg font-medium text-foreground">
+                  No hay registros en esta quincena
+                </p>
+                <p className="mt-1 text-sm text-muted-foreground">
+                  Haz clic en &quot;Nuevo reporte&quot; para comenzar
+                </p>
+                <button
+                  onClick={handleNuevo}
+                  className="cursor-pointer mt-4 inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 text-sm font-medium text-primary-foreground hover:opacity-90 transition-opacity"
+                >
+                  <IconAdd />
+                  Agregar Primer Registro
+                </button>
+              </div>
             </div>
           ) : (
             <div className="flex flex-col gap-3">
@@ -183,16 +176,39 @@ export function HomePage() {
         </div>
 
         {/* Boton flotante movil */}
-        <div className="fixed bottom-0 left-0 right-0 z-30 border-t border-border bg-card/95 backdrop-blur-sm px-4 py-3">
-          <div className="mx-auto max-w-lg">
+
+        <button
+          onClick={handleOpenBubble}
+          className="fixed bottom-4 right-4 flex w-12 h-12 items-center justify-center rounded-full bg-primary text-primary-foreground active:opacity-90 transition-opacity"
+        >
+          <IconArrowDropUp
+            className={`${openBubble ? "rotate-180" : "rotate-0"} transition-transform duration-300`}
+          />
+        </button>
+
+        <div
+          className={`fixed bottom-19 right-5 z-40 flex flex-col items-center gap-3 transition-all duration-300
+            ${openBubble ? "pointer-events-auto" : "pointer-events-none"}`}
+        >
+          {entries.length > 0 && (
             <button
-              onClick={handleNuevo}
-              className="flex w-full items-center justify-center gap-2 rounded-xl bg-primary py-4 text-lg font-bold text-primary-foreground active:opacity-90 transition-opacity"
+              onClick={handleVerReporte}
+              className={`flex w-10 h-10 items-center justify-center rounded-full bg-primary text-primary-foreground
+              transition-all duration-300
+              ${openBubble ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-6 scale-75"}`}
             >
-              <IconAdd />
-              Agregar Registro
+              <IconPrint className="size-5" />
             </button>
-          </div>
+          )}
+
+          <button
+            onClick={handleNuevo}
+            className={`flex w-10 h-10 items-center justify-center rounded-full bg-primary text-primary-foreground
+              transition-all duration-300 delay-75
+              ${openBubble ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-6 scale-75"}`}
+          >
+            <IconAdd className="size-5" />
+          </button>
         </div>
       </div>
 
@@ -268,9 +284,12 @@ export function HomePage() {
       {deleteId && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-foreground/40 px-6">
           <div className="w-full max-w-sm rounded-2xl bg-card p-6 shadow-xl">
-            <h3 className="text-lg font-bold text-foreground">Eliminar registro</h3>
+            <h3 className="text-lg font-bold text-foreground">
+              Eliminar registro
+            </h3>
             <p className="mt-2 text-sm text-muted-foreground">
-              Esta segur@ de que desea eliminar este registro? Esta accion no se puede deshacer.
+              Esta segur@ de que desea eliminar este registro? Esta accion no se
+              puede deshacer.
             </p>
             <div className="mt-5 flex gap-3">
               <button

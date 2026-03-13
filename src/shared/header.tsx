@@ -23,17 +23,17 @@ export function Header({ handleNuevo, handleVerReporte }: HeaderProps) {
 
   return (
     <>
-      <header className="bg-white border-b border-border">
-        <div className="mx-auto max-w-345 flex items-center justify-between px-3 md:px-6 py-3 ">
+      <header className="sticky top-0 md:block bg-white border-b border-border">
+        <div className="mx-auto max-w-348 flex items-center justify-between px-3 md:px-6 py-3 h-full">
           <div className="flex space-x-2 items-center">
             <div className="size-8 md:size-10 bg-secondary flex items-center justify-center rounded-lg">
               <IconCoat className="text-black size-6 md:size-7" />
             </div>
-            <div className="flex flex-col">
+            <div className="flex flex-col leading-3 md:leading-none">
               <h1 className="text-sm md:text-lg font-bold">
                 Control de Produccion
               </h1>
-              <p className="text-[10px] md:text-xs ">
+              <p className="text-[10px] md:text-xs">
                 Sistema de registro de operaciones - Chompas
               </p>
             </div>
@@ -41,7 +41,7 @@ export function Header({ handleNuevo, handleVerReporte }: HeaderProps) {
 
           <IconMenu onClick={handleMenu} className="size-7 block md:hidden" />
 
-          <div className="hidden md:flex space-x-4">
+          <div className="hidden md:flex h-full space-x-4">
             <div className="flex space-x-2">
               <button
                 onClick={handleVerReporte}
@@ -59,7 +59,7 @@ export function Header({ handleNuevo, handleVerReporte }: HeaderProps) {
               </button>
             </div>
             <div className="h-full w-0.5 bg-border"></div>
-            <button className="w-12 h-full bg-secondary flex items-center justify-center rounded-lg cursor-pointer hover:scale-103 duration-300">
+            <button className="w-12 h-12 bg-secondary flex items-center justify-center rounded-lg cursor-pointer hover:scale-103 duration-300">
               <IconAccountCircle className="text-black size-8" />
             </button>
           </div>
@@ -69,11 +69,22 @@ export function Header({ handleNuevo, handleVerReporte }: HeaderProps) {
       {openMenu && (
         <div className="fixed inset-0 z-50">
           {/* fondo */}
-          <div onClick={handleMenu} className={`absolute inset-0 bg-black/70 backdrop-blur-sm transition-opacity duration-300 ${openMenu ? "opacity-100" : "opacity-0 pointer-events-none"}`}/>
+          <div
+            onClick={handleMenu}
+            className={`absolute inset-0 bg-black/70 backdrop-blur-sm transition-opacity duration-300 ${openMenu ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+          />
 
           {/* panel */}
-          <div className={`absolute right-0 top-0 w-3/4 max-w-sm h-full bg-white shadow-xl transition-transform duration-300 ${openMenu ? "translate-x-0" : "translate-x-full"}`}>
-            Menu
+          <div
+            className={`absolute right-0 top-0 w-3/4 max-w-sm h-full bg-white shadow-xl transition-transform duration-300 ${openMenu ? "translate-x-0" : "translate-x-full"}`}
+          >
+            <div className="size-full p-4 space-y-5">
+              <h2 className="text-xl font-semibold">Menú</h2>
+              <button className="bg-secondary w-full flex items-center py-2 px-4 rounded-lg cursor-pointer space-x-2">
+                <IconAccountCircle className="text-black size-6" />
+                <p className="text-lg font-medium">Perfil</p>
+              </button>
+            </div>
           </div>
         </div>
       )}

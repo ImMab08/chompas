@@ -6,3 +6,6 @@ export * from './icon_delete'
 export * from './icon_edit_square'
 export * from './icon_stick_note_2'
 export * from './icon_account_circle'
+
+export * from './icon_arrow_drop_up'
+export * from './icon_arrow_drop_down'
